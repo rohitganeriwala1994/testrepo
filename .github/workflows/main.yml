@@ -27,11 +27,11 @@ jobs:
       - name: Login to UiPath
         run: >
           uip login
-          --authority https://staging.uipath.com
-          --organization "$UiPathTAMIndia"
-          --tenant "$UiPathDefault"
-          --client-id "$09b28fb3-4f70-40a0-94e9-d616432bcc7b"
-          --client-secret "$f?i~nK?dNDSUTU7pJ060IAVJGGybCAXzNK124qn(#hKr~B(fZ$~tAwkj5m!%ueVt"
+          --authority https://cloud.uipath.com
+          --organization "${{ secrets.UIPATH_ORG }}"
+          --tenant "${{ secrets.UIPATH_TENANT }}"
+          --client-id "${{ secrets.UIPATH_CLIENT_ID }}"
+          --client-secret "${{ secrets.UIPATH_CLIENT_SECRET }}"
 
       - name: Pack project
         run: uip rpa pack "${{ env.PROJECT_DIR }}" ./dist --version ${{ env.PACKAGE_VERSION }}
