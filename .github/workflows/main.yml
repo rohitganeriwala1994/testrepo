@@ -1,0 +1,40 @@
+name: Deploy to UiPath Orchestrator
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  PROJECT_DIR: HelloWorld_Rohit      # folder containing project.json
+  PACKAGE_VERSION: 1.0.${{ github.run_number }}
+
+jobs:
+  deploy:
+    runs-on: windows-latest          # Windows project; use ubuntu-latest for cross-platform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install UiPath CLI
+        run: npm -g install @uipath/cli
+
+      - name: Login to UiPath
+        run: >
+          uip login
+          --authority https://cloud.uipath.com
+          --organization "${{ secrets.UIPATH_ORG }}"
+          --tenant "${{ secrets.UIPATH_TENANT }}"
+          --client-id "${{ secrets.UIPATH_CLIENT_ID }}"
+          --client-secret "${{ secrets.UIPATH_CLIENT_SECRET }}"
+
+      - name: Pack project
+        run: uip rpa pack "${{ env.PROJECT_DIR }}" ./dist --version ${{ env.PACKAGE_VERSION }}
+
+      - name: Publish to Orchestrator
+        run: uip rpa publish (Get-ChildItem ./dist/*.nupkg).FullName
