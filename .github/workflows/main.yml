@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_DIR: HelloWorld_Rohit      # folder containing project.json
+  PROJECT_DIR: C:\Users\rohit\Documents\UiPath\HelloWorld_Rohit      # folder containing project.json
   PACKAGE_VERSION: 1.2.${{ github.run_number }}
 
 jobs:
