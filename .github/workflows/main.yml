@@ -30,8 +30,8 @@ jobs:
           --authority https://staging.uipath.com
           --organization "${{ secrets.UIPATH_ORG }}"
           --tenant "${{ secrets.UIPATH_TENANT }}"
-          --client-id "${{ secrets.UIPATH_CLIENT_ID }}"
-          --client-secret "${{ secrets.UIPATH_CLIENT_SECRET }}"
+          --client-id "${{ secrets.UIPATH_APP_ID }}"
+          --client-secret "${{ secrets.UIPATH_APP_SECRET }}"
 
       - name: Pack project
         run: uip rpa pack "${{ env.PROJECT_DIR }}" ./dist --version ${{ env.PACKAGE_VERSION }}
