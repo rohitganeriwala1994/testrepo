@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_DIR: HelloWorld_Rohit      # folder containing project.json
-  PACKAGE_VERSION: 1.0.${{ github.run_number }}
+  PACKAGE_VERSION: 1.2.${{ github.run_number }}
 
 jobs:
   deploy:
@@ -33,7 +33,7 @@ jobs:
           --client-id "${{ secrets.UIPATH_APP_ID }}"
           --client-secret "${{ secrets.UIPATH_APP_SECRET }}"
       - name: Pack project
-        run: uip rpa pack "${{ env.PROJECT_DIR }}" ./dist --version ${{ env.PACKAGE_VERSION }}
+        run: uip rpa pack "${{ env.PROJECT_DIR }}" ./dist
 
       - name: Publish to Orchestrator
         run: uip rpa publish (Get-ChildItem ./dist/*.nupkg).FullName
