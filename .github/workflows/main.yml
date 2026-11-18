@@ -28,8 +28,8 @@ jobs:
         run: >
           uip login
           --authority https://staging.uipath.com
-          --organization "${{ secrets.UIPATH_ORG }}"
-          --tenant "${{ secrets.UIPATH_TENANT }}"
+          --organization "$UiPathTAMIndia"
+          --tenant "$UiPathDefault"
           --client-id "$09b28fb3-4f70-40a0-94e9-d616432bcc7b"
           --client-secret "$f?i~nK?dNDSUTU7pJ060IAVJGGybCAXzNK124qn(#hKr~B(fZ$~tAwkj5m!%ueVt"
 
