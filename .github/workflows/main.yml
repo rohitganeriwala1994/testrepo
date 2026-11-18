@@ -27,7 +27,7 @@ jobs:
       - name: Login to UiPath
         run: >
           uip login
-          --authority https://cloud.uipath.com
+          --authority https://staging.uipath.com
           --organization "${{ secrets.UIPATH_ORG }}"
           --tenant "${{ secrets.UIPATH_TENANT }}"
           --client-id "${{ secrets.UIPATH_CLIENT_ID }}"
